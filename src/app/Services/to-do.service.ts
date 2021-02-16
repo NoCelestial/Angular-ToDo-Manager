@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { ToDoItem } from '../Models/ToDoItem';
 import { ToDoList } from '../Models/ToDoList';
 
@@ -7,15 +8,26 @@ import { ToDoList } from '../Models/ToDoList';
 })
 export class ToDoService {
   ToDo: ToDoList;
-  constructor() {
+  Values: string = '';
+  Items: string[] = [];
+  constructor(private cookirservice: CookieService) {
     this.ToDo = new ToDoList();
+    this.Set();
   }
   Get() {
+    this.Items = this.cookirservice.get('ToDoItems').split(',');
+    this.ToDo.items.length = 0;
+    this.Items.forEach((element) => {
+      let i = element.split('..');
+      this.ToDo.items.push(new ToDoItem(i[0], i[1] == 'true', i[2]));
+    });
+    this.ToDo.items.pop();
     return this.ToDo.items;
   }
 
   Post(Name: string) {
     this.ToDo.items.push(new ToDoItem(Name));
+    this.Set();
   }
 
   Delete(Name: string) {
@@ -24,5 +36,14 @@ export class ToDoService {
     if (i != -1) {
       this.ToDo.items.splice(i, 1);
     }
+    this.Set();
+  }
+
+  Set() {
+    this.ToDo.items.forEach((element) => {
+      this.Values +=
+        element.name + '..' + element.status + '..' + element.date + ',';
+    });
+    this.cookirservice.set('ToDoItems', this.Values);
   }
 }
