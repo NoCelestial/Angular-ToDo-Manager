@@ -8,10 +8,11 @@ import { ToDoService } from './Services/to-do.service';
 import { InputComponent } from './input/input.component';
 import { HomeComponent } from './home/home.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, InputComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, AngularMaterialModule],
+  imports: [BrowserModule, AppRoutingModule, AngularMaterialModule, BrowserAnimationsModule],
   providers: [ToDoService, CookieService],
   bootstrap: [AppComponent],
 })
