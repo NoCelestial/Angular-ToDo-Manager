@@ -5,14 +5,20 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToDoService } from './Services/to-do.service';
-import { InputComponent } from './input/input.component';
-import { HomeComponent } from './home/home.component';
+import { InputComponent } from './Components/input/input.component';
+import { HomeComponent } from './Components/home/home.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableComponent } from './Components/table/table.component';
 
 @NgModule({
-  declarations: [AppComponent, InputComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule, AngularMaterialModule, BrowserAnimationsModule],
+  declarations: [AppComponent, InputComponent, HomeComponent, TableComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularMaterialModule,
+    BrowserAnimationsModule,
+  ],
   providers: [ToDoService, CookieService],
   bootstrap: [AppComponent],
 })
