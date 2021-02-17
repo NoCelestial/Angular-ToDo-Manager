@@ -1,1 +1,17 @@
-<p>input works!</p>
+<table class="full-width" cellspacing="0">
+  <tr>
+    <td>
+      <mat-form-field class="full-width">
+        <mat-label>Task Name</mat-label>
+        <input matInput #Input maxlength="300" required placeholder="Ex Task 2" class="full">
+        <mat-hint align="start" style="color: red;">{{error}}</mat-hint>
+        <mat-hint align="end">{{Input.value.length}} / 300</mat-hint>
+      </mat-form-field>
+    </td>
+    <td>
+      <section>
+        <button mat-button color="primary" type="submit" (click)="Add(Input.value)">Add Task</button>
+      </section>
+    </td>
+  </tr>
+</table>
