@@ -1,7 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { ToDoItem } from 'src/app/Models/ToDoItem';
+import { Component } from '@angular/core';
 import { ToDoService } from 'src/app/Services/to-do.service';
 
 @Component({
@@ -9,24 +6,9 @@ import { ToDoService } from 'src/app/Services/to-do.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent {
   constructor(private service: ToDoService) {}
-
-  displayedColumns: string[] = ['name', 'date'];
-  dataSource = new MatTableDataSource<ToDoItem>(this.Get());
-
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-
   Get() {
     return this.service.Get();
-  }
-
-  Refresh() {
-    this.dataSource.data = this.Get();
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
   }
 }

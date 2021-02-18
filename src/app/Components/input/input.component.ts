@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from '../../Services/to-do.service';
-import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-input',
@@ -8,10 +7,7 @@ import { TableComponent } from '../table/table.component';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
-  table: TableComponent;
-  constructor(private service: ToDoService) {
-    this.table = new TableComponent(service);
-  }
+  constructor(private service: ToDoService) {}
   error: string = '';
   ngOnInit(): void {}
 
@@ -22,6 +18,5 @@ export class InputComponent implements OnInit {
     }
     this.error = '';
     this.service.Post(i);
-    this.table.Refresh();
   }
 }

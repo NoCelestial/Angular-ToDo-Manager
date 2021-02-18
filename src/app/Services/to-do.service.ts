@@ -28,6 +28,9 @@ export class ToDoService {
   Post(Name: string) {
     this.ToDo.items.push(new ToDoItem(Name));
     this.Set();
+    this.ToDo.items.forEach((element) => {
+      console.log(element);
+    });
   }
 
   Delete(Name: string) {
