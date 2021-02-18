@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from '../../Services/to-do.service';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-input',
@@ -7,9 +8,13 @@ import { ToDoService } from '../../Services/to-do.service';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
-  constructor(private service: ToDoService) {}
+  table: TableComponent;
+  constructor(private service: ToDoService) {
+    this.table = new TableComponent(service);
+  }
   error: string = '';
   ngOnInit(): void {}
+
   Add(i: string) {
     if (i.length > 300 || i == '') {
       this.error = 'Plz Use Valid Input';
@@ -17,5 +22,6 @@ export class InputComponent implements OnInit {
     }
     this.error = '';
     this.service.Post(i);
+    this.table.Refresh();
   }
 }
