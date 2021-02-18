@@ -12,11 +12,14 @@ export class ToDoService {
   Items: string[] = [];
   constructor(private cookirservice: CookieService) {
     this.ToDo = new ToDoList();
+    if (cookirservice.check('ToDoItems')) {
+      this.ToDo.items = this.Get();
+    }
     this.Set();
   }
   Get() {
     this.Items = this.cookirservice.get('ToDoItems').split(',');
-    this.ToDo.items.length = 0;
+    this.ToDo.items = [];
     this.Items.forEach((element) => {
       let i = element.split('..');
       this.ToDo.items.push(new ToDoItem(i[0], i[1] == 'true', i[2]));
@@ -28,9 +31,6 @@ export class ToDoService {
   Post(Name: string) {
     this.ToDo.items.push(new ToDoItem(Name));
     this.Set();
-    this.ToDo.items.forEach((element) => {
-      console.log(element);
-    });
   }
 
   Delete(Name: string) {
@@ -43,6 +43,7 @@ export class ToDoService {
   }
 
   Set() {
+    this.Values = '';
     this.ToDo.items.forEach((element) => {
       this.Values +=
         element.name + '..' + element.status + '..' + element.date + ',';
