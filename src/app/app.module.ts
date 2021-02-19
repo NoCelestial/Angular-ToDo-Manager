@@ -10,6 +10,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './Components/table/table.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, InputComponent, HomeComponent, TableComponent],
@@ -18,6 +19,7 @@ import { TableComponent } from './Components/table/table.component';
     AppRoutingModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
+    FormsModule,
   ],
   providers: [ToDoService, CookieService],
   bootstrap: [AppComponent],
