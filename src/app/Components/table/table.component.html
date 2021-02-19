@@ -7,7 +7,6 @@
         <th>Date</th>
         <th>Status Change</th>
         <th>Status</th>
-        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,9 +18,6 @@
         <td [ngSwitch]="item.status">
           <span class="text-success" *ngSwitchCase="true">YES</span>
           <span class="text-danger" *ngSwitchCase="false">NO</span>
-        </td>
-        <td>
-          <a class="btn btn-danger" (click)="Delete(item.name)"><i class="glyphicon glyphicon-trash"></i></a>
         </td>
       </tr>
     </tbody>

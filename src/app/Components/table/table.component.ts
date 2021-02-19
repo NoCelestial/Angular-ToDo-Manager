@@ -16,7 +16,4 @@ export class TableComponent {
   Get() {
     return this.todoitems;
   }
-  Delete(i: string) {
-    this.service.Delete(i);
-  }
 }
